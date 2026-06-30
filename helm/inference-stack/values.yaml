@@ -1,5 +1,5 @@
 global:
-  clusterBaseUrl: ''
+  clusterBaseUrl: 'apps.ocp.home.glroland.com'
 
 installPlanApproval: Manual
 rhclVersion: rhcl-operator.v1.3.4
