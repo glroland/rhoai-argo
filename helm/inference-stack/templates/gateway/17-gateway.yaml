@@ -20,7 +20,7 @@ spec:
     - allowedRoutes:
         namespaces:
           from: All
-      hostname: maas{{- .Values.global.clusterBaseUrl -}}
+      hostname: maas.apps.ocp.home.glroland.com
       name: https
       port: 443
       protocol: HTTPS
