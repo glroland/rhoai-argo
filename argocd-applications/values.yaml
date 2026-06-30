@@ -1,6 +1,6 @@
 global:
   toolsImage: image-registry.openshift-image-registry.svc:5000/openshift/tools:latest
-  clusterBaseUrl: ''
+  clusterBaseUrl: 'apps.ocp.home.glroland.com'
 
 installPlanApproval: &installPlanApproval Manual
 kueue: &kueue "Unmanaged"
