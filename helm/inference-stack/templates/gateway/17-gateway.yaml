@@ -28,5 +28,5 @@ spec:
         certificateRefs:
           - group: ''
             kind: Secret
-            name: letsencrypt-router-certs
+            name: cert-manager-ingress-cert # this is the default for RHDP-provisioned cert-manager wildcard cert
         mode: Terminate
