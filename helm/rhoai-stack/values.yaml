@@ -74,8 +74,51 @@ dashboardConfig:
   genAiStudio: true
   modelAsService: true
   observabilityDashboard: true
+  enablement: true
+  disableTrustyBiasMetrics: false
+  disableProjectScoped: false
+  disableDistributedWorkloads: false
+  disableProjects: false
+  disableKueue: false
+  disableLMEval: false
+  disableSupport: false
+  disableHome: false
+  disablePipelines: false
+  disableProjectSharing: false
+  disableModelServing: false
+  disableKServe: false
+  disableNIMModelServing: true
+  disableCustomServingRuntimes: false
+  disableModelRegistrySecureDB: true
+  disableStorageClasses: false
+  disableFeatureStore: false
+  disableKServeAuth: false
+  disableISVBadges: false
+  disableAdminConnectionTypes: false
+  disableUserManagement: false
+  disableInfo: false
+  disableKServeMetrics: false
+  disableModelCatalog: false
+  disableServingRuntimeParams: false
+  disableClusterManager: false
+  disablePerformanceMetrics: false
+  disableKServeRaw: false
+  disableBYONImageStream: false
+  disableModelRegistry: false
+  disableTracking: true
+  disableLLMd: false
+  projectRBAC: true
+  trainingJobs: true
+  vLLMDeploymentOnMaaS: true
+  maasAuthPolicies: true
+  mcpCatalog: true
+  autorag: true
+  automl: true
+  promptManagement: true
+  aiAssetCustomEndpoints: true
+  llmGatewayField: true
 
-defaultWorkbenchPvcSize: 20Gi
+defaultWorkbenchPvcSize: 25Gi
 showJupyterInEnabledApplications: true
 
 modelServerSizes:
@@ -105,6 +148,14 @@ modelServerSizes:
         memory: 16Gi
 
 notebookSizes:
+  - name: Tiny
+    resources:
+      limits:
+        cpu: '1'
+        memory: 2Gi
+      requests:
+        cpu: '1'
+        memory: 2Gi
   - name: Small
     resources:
       limits:
