@@ -1,0 +1,1410 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: mcp-catalog-sources
+  namespace: rhoai-model-registries
+  labels:
+    app: model-catalog
+    component: model-catalog
+data:
+  sources.yaml: |
+    mcp_catalogs:
+      - name: "Lee's Favorite MCPs"
+        id: "glroland-mcp-catalog"
+        type: "yaml"
+        enabled: true
+        properties:
+          yamlCatalogPath: "glroland-mcp-catalog.yaml"
+        labels:
+          - "Lee's Favorite MCP"
+  glroland-mcp-catalog.yaml: |
+    source: Lee's Favorite MCPs
+    mcp_servers:
+    - name: initmax/zabbix-mcp
+      provider: initmax
+      license: MIT
+      license_link: https://opensource.org/licenses/MIT
+      description: A comprehensive MCP server for the full Zabbix API, covering hosts, problems, events, dashboards, templates, discovery, users, and advanced analytics including anomaly detection and capacity forecasting.
+      readme: |-
+        # Zabbix MCP Server by initmax
+
+        A Model Context Protocol (MCP) server providing complete access to the Zabbix API.
+        Enables AI assistants to monitor, manage, and analyse Zabbix infrastructure through
+        245 tools spanning every major Zabbix API object and several enhanced analytics
+        capabilities not available in the native API.
+
+        ## Features
+        - **Full Host Lifecycle** — Create, update, delete, and mass-manage hosts, host groups, and interfaces
+        - **Problem & Alert Management** — Query active problems, acknowledge/close events, inspect the alert log
+        - **Dashboard & Reporting** — Manage dashboards, template dashboards, and scheduled reports; generate PDF reports
+        - **Templates & Discovery** — Full template management plus Low-Level Discovery rules, prototypes, and multi-level (nested) discovery
+        - **Items, Triggers & Graphs** — Complete CRUD for items, triggers, graphs, and their LLD prototypes
+        - **History & Trends** — Retrieve raw history or aggregated trend data; push and clear history
+        - **Configuration Import/Export** — Export and import Zabbix configuration as YAML, XML, or JSON
+        - **User & Access Management** — Manage users, user groups, roles, LDAP/SAML directories, MFA, and API tokens
+        - **Network Maps & SLAs** — Create and manage network topology maps and SLA definitions
+        - **Maintenance & Correlation** — Define maintenance windows and event correlation rules
+        - **Proxy & HA Management** — Manage proxies, proxy groups, and HA cluster nodes
+        - **Advanced Analytics** — Anomaly detection via z-score analysis, capacity forecasting via linear regression, graph rendering to PNG
+        - **Safe Write Workflow** — Prepare/confirm pattern for destructive write operations
+
+        ## Tools (245 total)
+        ### Hosts & Groups
+        - host_get, host_create, host_update, host_delete, host_massadd, host_massremove, host_massupdate
+        - hostgroup_get, hostgroup_create, hostgroup_update, hostgroup_delete, hostgroup_massadd, hostgroup_massremove, hostgroup_massupdate, hostgroup_propagate
+        - hostinterface_get, hostinterface_create, hostinterface_update, hostinterface_delete, hostinterface_massadd, hostinterface_massremove, hostinterface_replacehostinterfaces
+
+        ### Problems, Events & Alerts
+        - problem_get, event_get, event_acknowledge, alert_get
+
+        ### Items, Triggers & Graphs
+        - item_get, item_create, item_update, item_delete
+        - trigger_get, trigger_create, trigger_update, trigger_delete
+        - graph_get, graph_create, graph_update, graph_delete, graphitem_get
+
+        ### Templates & Template Groups
+        - template_get, template_create, template_update, template_delete, template_massadd, template_massremove, template_massupdate
+        - templategroup_get, templategroup_create, templategroup_update, templategroup_delete, templategroup_massadd, templategroup_massremove, templategroup_massupdate, templategroup_propagate
+
+        ### Low-Level Discovery
+        - discoveryrule_get, discoveryrule_create, discoveryrule_update, discoveryrule_delete
+        - itemprototype_get, itemprototype_create, itemprototype_update, itemprototype_delete
+        - triggerprototype_get, triggerprototype_create, triggerprototype_update, triggerprototype_delete
+        - graphprototype_get, graphprototype_create, graphprototype_update, graphprototype_delete
+        - hostprototype_get, hostprototype_create, hostprototype_update, hostprototype_delete
+        - discoveryruleprototype_get, discoveryruleprototype_create, discoveryruleprototype_update, discoveryruleprototype_delete
+
+        ### Dashboards & Reports
+        - dashboard_get, dashboard_create, dashboard_update, dashboard_delete
+        - templatedashboard_get, templatedashboard_create, templatedashboard_update, templatedashboard_delete
+        - report_get, report_create, report_update, report_delete, report_generate
+
+        ### History, Trends & Tasks
+        - history_get, history_clear, history_push, trend_get
+        - task_get, task_create
+
+        ### Maps, SLAs & Maintenance
+        - map_get, map_create, map_update, map_delete
+        - sla_get, sla_create, sla_update, sla_delete, sla_getsli
+        - maintenance_get, maintenance_create, maintenance_update, maintenance_delete
+
+        ### Network Discovery
+        - drule_get, drule_create, drule_update, drule_delete
+        - dcheck_get, dhost_get, dservice_get
+        - httptest_get, httptest_create, httptest_update, httptest_delete
+
+        ### Actions, Scripts & Media
+        - action_get, action_create, action_update, action_delete
+        - action_prepare, action_confirm
+        - script_get, script_create, script_update, script_delete, script_execute, script_getscriptsbyevents, script_getscriptsbyhosts
+        - mediatype_get, mediatype_create, mediatype_update, mediatype_delete
+        - alert_get
+
+        ### Users, Groups & Auth
+        - user_get, user_create, user_update, user_delete, user_login, user_logout, user_checkauthentication, user_provision, user_resettotp, user_unblock
+        - usergroup_get, usergroup_create, usergroup_update, usergroup_delete
+        - userdirectory_get, userdirectory_create, userdirectory_update, userdirectory_delete, userdirectory_test
+        - role_get, role_create, role_update, role_delete
+        - token_get, token_create, token_update, token_delete, token_generate
+        - authentication_get, authentication_update, autoregistration_get, autoregistration_update
+        - mfa_get, mfa_create, mfa_update, mfa_delete
+
+        ### Configuration & Settings
+        - configuration_export, configuration_import, configuration_importcompare
+        - settings_get, settings_update, housekeeping_get, housekeeping_update
+        - usermacro_get, usermacro_create, usermacro_update, usermacro_delete, usermacro_createglobal, usermacro_updateglobal, usermacro_deleteglobal
+        - valuemap_get, valuemap_create, valuemap_update, valuemap_delete
+        - regexp_get, regexp_create, regexp_update, regexp_delete
+        - iconmap_get, iconmap_create, iconmap_update, iconmap_delete
+        - image_get, image_create, image_update, image_delete
+        - module_get, module_create, module_update, module_delete
+
+        ### Infrastructure
+        - proxy_get, proxy_create, proxy_update, proxy_delete
+        - proxygroup_get, proxygroup_create, proxygroup_update, proxygroup_delete
+        - hanode_get
+        - correlation_get, correlation_create, correlation_update, correlation_delete
+        - connector_get, connector_create, connector_update, connector_delete
+        - auditlog_get
+
+        ### Advanced / Analytics
+        - graph_render — Render a Zabbix graph as a base64-encoded PNG
+        - anomaly_detect — Z-score anomaly detection across a host group
+        - capacity_forecast — Linear-regression capacity forecasting with confidence metric
+        - health_check — MCP server and Zabbix connectivity health check
+        - zabbix_raw_api_call — Direct passthrough to any Zabbix API method
+
+        ## Authentication
+        Connects via API token or username/password (ZABBIX_URL, ZABBIX_USER, ZABBIX_PASSWORD or ZABBIX_API_TOKEN).
+
+        ## Prerequisites
+        - Zabbix server 6.0+ with API access enabled
+        - Python 3.11+ or Docker
+        - Zabbix API user with read (and optionally write) permissions
+
+        ## Quick Start
+        ```bash
+        docker pull ghcr.io/initmax/zabbix-mcp:latest
+        ```
+
+        ## Transports
+        Supports stdio (default), SSE, and HTTP transports.
+      version: 1.0.0
+      transports:
+        - stdio
+        - http
+        - sse
+      logo: data:image/png;base64,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
+      documentationUrl: https://github.com/initmax/zabbix-mcp
+      repositoryUrl: https://github.com/initmax/zabbix-mcp
+      deploymentMode: local
+      tags:
+        - zabbix
+        - monitoring
+        - alerting
+        - observability
+        - analytics
+      tools:
+        # --- Dashboards ---
+        - name: dashboard_get
+          description: Retrieve dashboards with their widgets, pages, and user/group sharing settings.
+          accessType: read_only
+          parameters: []
+        - name: dashboard_create
+          description: Create a new dashboard with pages and widgets.
+          accessType: read_write
+          parameters: []
+        - name: dashboard_update
+          description: Update an existing dashboard. The params dict must include 'dashboardid'.
+          accessType: read_write
+          parameters: []
+        - name: dashboard_delete
+          description: Delete one or more dashboards by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: templatedashboard_get
+          description: Retrieve dashboards that belong to templates.
+          accessType: read_only
+          parameters: []
+        - name: templatedashboard_create
+          description: Create a new template dashboard. Must specify 'templateid'.
+          accessType: read_write
+          parameters: []
+        - name: templatedashboard_update
+          description: Update a template dashboard. Params must include 'dashboardid'.
+          accessType: read_write
+          parameters: []
+        - name: templatedashboard_delete
+          description: Delete one or more template dashboards by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Reports ---
+        - name: report_get
+          description: Retrieve scheduled reports.
+          accessType: read_only
+          parameters: []
+        - name: report_create
+          description: Create a new scheduled report. Requires 'name', 'dashboardid', and a schedule.
+          accessType: read_write
+          parameters: []
+        - name: report_update
+          description: Update a scheduled report. Params must include 'reportid'.
+          accessType: read_write
+          parameters: []
+        - name: report_delete
+          description: Delete one or more scheduled reports by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- HA ---
+        - name: hanode_get
+          description: Retrieve Zabbix server High Availability cluster nodes and their status.
+          accessType: read_only
+          parameters: []
+        # --- History & Trends ---
+        - name: history_get
+          description: Retrieve historical item data. Always specify the 'history' type parameter.
+          accessType: read_only
+          parameters:
+            - name: history
+              type: integer
+              description: Data type (0=float, 1=string, 2=log, 3=unsigned, 4=text)
+              required: true
+            - name: itemids
+              type: string
+              description: Comma-separated item IDs to filter by
+              required: false
+            - name: time_from
+              type: string
+              description: Start time as Unix timestamp
+              required: false
+            - name: time_till
+              type: string
+              description: End time as Unix timestamp
+              required: false
+        - name: history_clear
+          description: Clear (delete) history data for the specified items. Cannot be undone.
+          accessType: read_write
+          parameters: []
+        - name: history_push
+          description: Push historical data into Zabbix for Trapper or Dependent items.
+          accessType: read_write
+          parameters: []
+        - name: trend_get
+          description: Retrieve trend data (hourly min/avg/max). Prefer over history for multi-day ranges.
+          accessType: read_only
+          parameters:
+            - name: itemids
+              type: string
+              description: Comma-separated item IDs to filter by
+              required: false
+            - name: time_from
+              type: string
+              description: Start time as Unix timestamp
+              required: false
+            - name: time_till
+              type: string
+              description: End time as Unix timestamp
+              required: false
+        # --- Events & Problems ---
+        - name: event_get
+          description: Retrieve events including resolved ones. Use problem_get for active-only.
+          accessType: read_only
+          parameters:
+            - name: hostids
+              type: string
+              description: Comma-separated host IDs to filter events by
+              required: false
+            - name: time_from
+              type: string
+              description: Start time as Unix timestamp
+              required: false
+            - name: time_till
+              type: string
+              description: End time as Unix timestamp
+              required: false
+            - name: severity_min
+              type: integer
+              description: Minimum severity level to filter by
+              required: false
+        - name: event_acknowledge
+          description: Acknowledge, close, suppress, or change severity of events via bitmask action.
+          accessType: read_write
+          parameters:
+            - name: eventids
+              type: string
+              description: Comma-separated event IDs to act on
+              required: true
+            - name: action
+              type: integer
+              description: Bitmask (1=close, 2=ack, 4=message, 8=change severity, 32=suppress, etc.)
+              required: true
+            - name: message
+              type: string
+              description: Message text (required when action includes add message)
+              required: false
+        - name: problem_get
+          description: Retrieve active/unresolved problems. PRIMARY tool for current alerts.
+          accessType: read_only
+          parameters:
+            - name: hostids
+              type: string
+              description: Comma-separated host IDs to filter problems by
+              required: false
+            - name: groupids
+              type: string
+              description: Comma-separated host group IDs to filter by
+              required: false
+            - name: severity_min
+              type: integer
+              description: Minimum severity (0=not classified … 5=disaster)
+              required: false
+            - name: acknowledged
+              type: boolean
+              description: Filter by acknowledgement state
+              required: false
+            - name: recent
+              type: boolean
+              description: Limit to problems created in the last 30 minutes
+              required: false
+        # --- Maps ---
+        - name: map_get
+          description: Retrieve network maps including elements and links.
+          accessType: read_only
+          parameters: []
+        - name: map_create
+          description: Create a new network map. Requires 'name', 'width', and 'height'.
+          accessType: read_write
+          parameters: []
+        - name: map_update
+          description: Update an existing network map. Params must include 'sysmapid'.
+          accessType: read_write
+          parameters: []
+        - name: map_delete
+          description: Delete one or more network maps by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Tasks ---
+        - name: task_get
+          description: Retrieve internal Zabbix tasks such as check-now requests.
+          accessType: read_only
+          parameters: []
+        - name: task_create
+          description: Create a new task (e.g. check now for an item).
+          accessType: read_write
+          parameters: []
+        # --- SLAs ---
+        - name: sla_get
+          description: Retrieve SLA definitions and their schedules and service tags.
+          accessType: read_only
+          parameters: []
+        - name: sla_create
+          description: Create a new SLA. Requires 'name', 'slo', 'period', 'timezone', and 'service_tags'.
+          accessType: read_write
+          parameters: []
+        - name: sla_update
+          description: Update an existing SLA. The 'slaid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: sla_delete
+          description: Delete SLAs by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: sla_getsli
+          description: Get SLA Service Level Indicator data showing period-by-period availability.
+          accessType: read_only
+          parameters:
+            - name: slaid
+              type: string
+              description: SLA ID to retrieve SLI data for
+              required: true
+            - name: serviceids
+              type: string
+              description: Comma-separated service IDs to filter by
+              required: false
+        # --- Hosts ---
+        - name: host_get
+          description: Retrieve hosts. Core monitored entities representing servers, VMs, and devices.
+          accessType: read_only
+          parameters:
+            - name: groupids
+              type: string
+              description: Comma-separated host group IDs to filter by
+              required: false
+            - name: hostids
+              type: string
+              description: Comma-separated host IDs to filter by
+              required: false
+        - name: host_create
+          description: Create a new host. Requires 'host' (technical name) and 'groups'.
+          accessType: read_write
+          parameters: []
+        - name: host_update
+          description: Update an existing host. The 'hostid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: host_delete
+          description: Delete hosts by their IDs including all related items, triggers, and graphs.
+          accessType: read_write
+          parameters: []
+        - name: host_massadd
+          description: Add groups, templates, macros, or interfaces to multiple hosts at once.
+          accessType: read_write
+          parameters: []
+        - name: host_massremove
+          description: Remove groups, templates, macros, or interfaces from multiple hosts at once.
+          accessType: read_write
+          parameters: []
+        - name: host_massupdate
+          description: Mass-update properties on multiple hosts at once.
+          accessType: read_write
+          parameters: []
+        # --- Host Groups ---
+        - name: hostgroup_get
+          description: Retrieve host groups used to organize hosts and control permissions.
+          accessType: read_only
+          parameters: []
+        - name: hostgroup_create
+          description: Create a new host group. Requires the 'name' property.
+          accessType: read_write
+          parameters: []
+        - name: hostgroup_update
+          description: Update an existing host group. The 'groupid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: hostgroup_delete
+          description: Delete host groups by their IDs (hosts are not deleted).
+          accessType: read_write
+          parameters: []
+        - name: hostgroup_massadd
+          description: Add hosts or templates to multiple host groups at once.
+          accessType: read_write
+          parameters: []
+        - name: hostgroup_massremove
+          description: Remove hosts or templates from multiple host groups at once.
+          accessType: read_write
+          parameters: []
+        - name: hostgroup_massupdate
+          description: Replace all hosts or templates in the specified host groups.
+          accessType: read_write
+          parameters: []
+        - name: hostgroup_propagate
+          description: Propagate permissions to child host groups.
+          accessType: read_write
+          parameters: []
+        # --- Host Interfaces ---
+        - name: hostinterface_get
+          description: Retrieve host interfaces (agent, SNMP, JMX, IPMI).
+          accessType: read_only
+          parameters: []
+        - name: hostinterface_create
+          description: Create a new host interface. Requires 'hostid', 'type', 'main', 'useip', 'ip', 'dns', 'port'.
+          accessType: read_write
+          parameters: []
+        - name: hostinterface_update
+          description: Update an existing host interface. The 'interfaceid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: hostinterface_delete
+          description: Delete host interfaces by their IDs. Cannot delete interfaces used by items.
+          accessType: read_write
+          parameters: []
+        - name: hostinterface_massadd
+          description: Add interfaces to multiple hosts at once.
+          accessType: read_write
+          parameters: []
+        - name: hostinterface_massremove
+          description: Remove interfaces from multiple hosts at once.
+          accessType: read_write
+          parameters: []
+        - name: hostinterface_replacehostinterfaces
+          description: Replace all interfaces on a host. Params must include 'hostid' and 'interfaces'.
+          accessType: read_write
+          parameters: []
+        # --- Items ---
+        - name: item_get
+          description: Retrieve items (individual data collection points) for hosts.
+          accessType: read_only
+          parameters:
+            - name: hostids
+              type: string
+              description: Comma-separated host IDs to filter items by
+              required: false
+        - name: item_create
+          description: Create a new item. Requires 'hostid', 'name', 'key_', 'type', and 'value_type'.
+          accessType: read_write
+          parameters: []
+        - name: item_update
+          description: Update an existing item. The 'itemid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: item_delete
+          description: Delete items by their IDs. Triggers referencing only deleted items are also removed.
+          accessType: read_write
+          parameters: []
+        # --- Triggers ---
+        - name: trigger_get
+          description: Retrieve triggers defining alert conditions via item expressions.
+          accessType: read_only
+          parameters:
+            - name: hostids
+              type: string
+              description: Comma-separated host IDs to filter triggers by
+              required: false
+        - name: trigger_create
+          description: Create a new trigger. Requires 'description' and 'expression'.
+          accessType: read_write
+          parameters: []
+        - name: trigger_update
+          description: Update an existing trigger. The 'triggerid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: trigger_delete
+          description: Delete triggers by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Graphs ---
+        - name: graph_get
+          description: Retrieve graphs visualizing item data over time.
+          accessType: read_only
+          parameters: []
+        - name: graph_create
+          description: Create a new graph. Requires 'name' and 'gitems'.
+          accessType: read_write
+          parameters: []
+        - name: graph_update
+          description: Update an existing graph. The 'graphid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: graph_delete
+          description: Delete graphs by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: graphitem_get
+          description: Retrieve graph items (individual data series within a graph).
+          accessType: read_only
+          parameters: []
+        # --- Templates ---
+        - name: template_get
+          description: Retrieve templates (reusable sets of items, triggers, graphs, and discovery rules).
+          accessType: read_only
+          parameters: []
+        - name: template_create
+          description: Create a new template. Requires 'host' and 'groups'.
+          accessType: read_write
+          parameters: []
+        - name: template_update
+          description: Update an existing template. The 'templateid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: template_delete
+          description: Delete templates by their IDs, removing inherited entities from linked hosts.
+          accessType: read_write
+          parameters: []
+        - name: template_massadd
+          description: Add groups, hosts, or macros to multiple templates at once.
+          accessType: read_write
+          parameters: []
+        - name: template_massremove
+          description: Remove groups, hosts, or macros from multiple templates at once.
+          accessType: read_write
+          parameters: []
+        - name: template_massupdate
+          description: Replace groups, hosts, or macros for multiple templates at once.
+          accessType: read_write
+          parameters: []
+        # --- Template Groups ---
+        - name: templategroup_get
+          description: Retrieve template groups used to organise templates and control access.
+          accessType: read_only
+          parameters: []
+        - name: templategroup_create
+          description: Create a new template group. Requires the 'name' property.
+          accessType: read_write
+          parameters: []
+        - name: templategroup_update
+          description: Update an existing template group. The 'groupid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: templategroup_delete
+          description: Delete template groups by their IDs (templates are not deleted).
+          accessType: read_write
+          parameters: []
+        - name: templategroup_massadd
+          description: Add templates to multiple template groups at once.
+          accessType: read_write
+          parameters: []
+        - name: templategroup_massremove
+          description: Remove templates from multiple template groups at once.
+          accessType: read_write
+          parameters: []
+        - name: templategroup_massupdate
+          description: Replace all templates in the specified template groups.
+          accessType: read_write
+          parameters: []
+        - name: templategroup_propagate
+          description: Propagate permissions to child template groups.
+          accessType: read_write
+          parameters: []
+        # --- Low-Level Discovery ---
+        - name: discoveryrule_get
+          description: Retrieve LLD rules that auto-discover entities and create objects from prototypes.
+          accessType: read_only
+          parameters: []
+        - name: discoveryrule_create
+          description: Create a new LLD rule. Requires 'hostid', 'name', 'key_', and 'type'.
+          accessType: read_write
+          parameters: []
+        - name: discoveryrule_update
+          description: Update an existing LLD rule. The 'itemid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: discoveryrule_delete
+          description: Delete LLD rules and all their prototypes and discovered objects.
+          accessType: read_write
+          parameters: []
+        - name: itemprototype_get
+          description: Retrieve item prototypes used by LLD rules to create per-entity items.
+          accessType: read_only
+          parameters: []
+        - name: itemprototype_create
+          description: Create a new item prototype. Requires 'hostid', 'ruleid', 'name', 'key_', 'type', 'value_type'.
+          accessType: read_write
+          parameters: []
+        - name: itemprototype_update
+          description: Update an existing item prototype. The 'itemid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: itemprototype_delete
+          description: Delete item prototypes by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: triggerprototype_get
+          description: Retrieve trigger prototypes used by LLD rules to create per-entity triggers.
+          accessType: read_only
+          parameters: []
+        - name: triggerprototype_create
+          description: Create a new trigger prototype. Requires 'description' and 'expression' with LLD macros.
+          accessType: read_write
+          parameters: []
+        - name: triggerprototype_update
+          description: Update an existing trigger prototype. The 'triggerid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: triggerprototype_delete
+          description: Delete trigger prototypes by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: graphprototype_get
+          description: Retrieve graph prototypes used by LLD rules to create per-entity graphs.
+          accessType: read_only
+          parameters: []
+        - name: graphprototype_create
+          description: Create a new graph prototype. Requires 'name' and 'gitems' referencing item prototypes.
+          accessType: read_write
+          parameters: []
+        - name: graphprototype_update
+          description: Update an existing graph prototype. The 'graphid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: graphprototype_delete
+          description: Delete graph prototypes by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: hostprototype_get
+          description: Retrieve host prototypes that auto-create hosts for each discovered entity.
+          accessType: read_only
+          parameters: []
+        - name: hostprototype_create
+          description: Create a new host prototype. Requires 'host', 'ruleid', and 'groupLinks'.
+          accessType: read_write
+          parameters: []
+        - name: hostprototype_update
+          description: Update an existing host prototype. The 'hostid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: hostprototype_delete
+          description: Delete host prototypes and their discovered hosts.
+          accessType: read_write
+          parameters: []
+        - name: discoveryruleprototype_get
+          description: Retrieve LLD rule prototypes (Zabbix 7.4+) for multi-level nested discovery.
+          accessType: read_only
+          parameters: []
+        - name: discoveryruleprototype_create
+          description: Create a new LLD rule prototype (Zabbix 7.4+). Requires 'hostid', 'name', 'key_', 'type'.
+          accessType: read_write
+          parameters: []
+        - name: discoveryruleprototype_update
+          description: Update an existing LLD rule prototype. The 'itemid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: discoveryruleprototype_delete
+          description: Delete LLD rule prototypes by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- User Macros ---
+        - name: usermacro_get
+          description: Retrieve user macros ({$MACRO}) defined globally or on hosts/templates.
+          accessType: read_only
+          parameters: []
+        - name: usermacro_create
+          description: Create a host-level user macro. Requires 'hostid', 'macro', and 'value'.
+          accessType: read_write
+          parameters: []
+        - name: usermacro_update
+          description: Update a host-level user macro. The 'hostmacroid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: usermacro_delete
+          description: Delete host-level user macros by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: usermacro_createglobal
+          description: Create a global user macro. Requires 'macro' and 'value'.
+          accessType: read_write
+          parameters: []
+        - name: usermacro_updateglobal
+          description: Update a global user macro. The 'globalmacroid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: usermacro_deleteglobal
+          description: Delete global user macros by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Value Maps ---
+        - name: valuemap_get
+          description: Retrieve value maps that translate numeric values into human-readable strings.
+          accessType: read_only
+          parameters: []
+        - name: valuemap_create
+          description: Create a new value map. Requires 'hostid', 'name', and 'mappings'.
+          accessType: read_write
+          parameters: []
+        - name: valuemap_update
+          description: Update an existing value map. The 'valuemapid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: valuemap_delete
+          description: Delete value maps by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Maintenance ---
+        - name: maintenance_get
+          description: Retrieve maintenance periods that suppress notifications during downtime.
+          accessType: read_only
+          parameters: []
+        - name: maintenance_create
+          description: Create a new maintenance period. Requires 'name', 'active_since', 'active_till', 'timeperiods', and hosts/groups.
+          accessType: read_write
+          parameters: []
+        - name: maintenance_update
+          description: Update an existing maintenance period. The 'maintenanceid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: maintenance_delete
+          description: Delete maintenance periods by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Correlations ---
+        - name: correlation_get
+          description: Retrieve event correlation rules for automatically closing related problems.
+          accessType: read_only
+          parameters: []
+        - name: correlation_create
+          description: Create a new event correlation. Requires 'name', 'filter', and 'operations'.
+          accessType: read_write
+          parameters: []
+        - name: correlation_update
+          description: Update an existing event correlation. The 'correlationid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: correlation_delete
+          description: Delete event correlations by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Network Discovery ---
+        - name: drule_get
+          description: Retrieve network discovery rules that scan IP ranges for new hosts.
+          accessType: read_only
+          parameters: []
+        - name: drule_create
+          description: Create a new network discovery rule. Requires 'name', 'iprange', and 'dchecks'.
+          accessType: read_write
+          parameters: []
+        - name: drule_update
+          description: Update an existing network discovery rule. The 'druleid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: drule_delete
+          description: Delete network discovery rules by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: dcheck_get
+          description: Retrieve discovery checks (SNMP, agent, ICMP, etc.) defined within discovery rules.
+          accessType: read_only
+          parameters: []
+        - name: dhost_get
+          description: Retrieve discovered hosts found by network discovery rules.
+          accessType: read_only
+          parameters: []
+        - name: dservice_get
+          description: Retrieve discovered services on discovered hosts.
+          accessType: read_only
+          parameters: []
+        # --- Web Scenarios ---
+        - name: httptest_get
+          description: Retrieve web scenarios performing multi-step HTTP checks.
+          accessType: read_only
+          parameters: []
+        - name: httptest_create
+          description: Create a new web scenario. Requires 'hostid', 'name', and 'steps'.
+          accessType: read_write
+          parameters: []
+        - name: httptest_update
+          description: Update an existing web scenario. The 'httptestid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: httptest_delete
+          description: Delete web scenarios by their IDs (associated web items also removed).
+          accessType: read_write
+          parameters: []
+        # --- Configuration ---
+        - name: configuration_export
+          description: Export Zabbix configuration as YAML, XML, or JSON for backup or transfer.
+          accessType: read_only
+          parameters:
+            - name: format
+              type: string
+              description: Export format — yaml, xml, or json
+              required: true
+            - name: options
+              type: object
+              description: Object specifying which entities to export (hosts, templates, host_groups, etc.)
+              required: true
+        - name: configuration_import
+          description: Import Zabbix configuration from YAML, XML, or JSON.
+          accessType: read_write
+          parameters:
+            - name: format
+              type: string
+              description: Import format — yaml, xml, or json
+              required: true
+            - name: source
+              type: string
+              description: Configuration data as a string
+              required: true
+            - name: rules
+              type: object
+              description: Import rules controlling create/update/delete behaviour per object type
+              required: true
+        - name: configuration_importcompare
+          description: Dry-run compare of import data against existing config without applying changes.
+          accessType: read_only
+          parameters: []
+        # --- Actions ---
+        - name: action_get
+          description: Retrieve actions defining automated responses to events (trigger, discovery, etc.).
+          accessType: read_only
+          parameters: []
+        - name: action_create
+          description: Create a new action. Required fields — name, eventsource, and at least one operation.
+          accessType: read_write
+          parameters: []
+        - name: action_update
+          description: Update an existing action. The 'actionid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: action_delete
+          description: Delete one or more actions by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Alert Log ---
+        - name: alert_get
+          description: Retrieve the alert log of every notification and command Zabbix has executed.
+          accessType: read_only
+          parameters: []
+        # --- Media Types ---
+        - name: mediatype_get
+          description: Retrieve notification media types (email, SMS, webhook, script).
+          accessType: read_only
+          parameters: []
+        - name: mediatype_create
+          description: Create a new media type. Requires 'name' and 'type'.
+          accessType: read_write
+          parameters: []
+        - name: mediatype_update
+          description: Update an existing media type. The 'mediatypeid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: mediatype_delete
+          description: Delete one or more media types by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Scripts ---
+        - name: script_get
+          description: Retrieve global scripts executable on hosts or as action operations.
+          accessType: read_only
+          parameters: []
+        - name: script_create
+          description: Create a new global script. Requires 'name', 'type', 'command', and 'scope'.
+          accessType: read_write
+          parameters: []
+        - name: script_update
+          description: Update an existing global script. The 'scriptid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: script_delete
+          description: Delete one or more global scripts by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: script_execute
+          description: Execute a script on a host or in an event context immediately.
+          accessType: read_write
+          parameters: []
+        - name: script_getscriptsbyevents
+          description: Get scripts available for the given events.
+          accessType: read_only
+          parameters: []
+        - name: script_getscriptsbyhosts
+          description: Get scripts available for the given hosts, respecting host group permissions.
+          accessType: read_only
+          parameters: []
+        # --- Users ---
+        - name: user_get
+          description: Retrieve Zabbix user accounts including roles, groups, and notification media.
+          accessType: read_only
+          parameters: []
+        - name: user_create
+          description: Create a new Zabbix user. Requires 'username', 'passwd', 'roleid', and 'usrgrps'.
+          accessType: read_write
+          parameters: []
+        - name: user_update
+          description: Update an existing user. The 'userid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: user_delete
+          description: Delete one or more users by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: user_login
+          description: Authenticate and obtain a session token.
+          accessType: read_only
+          parameters:
+            - name: username
+              type: string
+              description: Zabbix username
+              required: true
+            - name: password
+              type: string
+              description: Zabbix password
+              required: true
+        - name: user_logout
+          description: Invalidate the current API session token.
+          accessType: read_write
+          parameters: []
+        - name: user_checkauthentication
+          description: Check whether a session or API token is still valid.
+          accessType: read_only
+          parameters: []
+        - name: user_provision
+          description: Provision users from an external directory (LDAP/SAML).
+          accessType: read_write
+          parameters: []
+        - name: user_resettotp
+          description: Reset TOTP secrets for users, forcing re-enrollment on next login.
+          accessType: read_write
+          parameters: []
+        - name: user_unblock
+          description: Unblock users locked out due to too many failed login attempts.
+          accessType: read_write
+          parameters: []
+        # --- User Groups ---
+        - name: usergroup_get
+          description: Retrieve user groups with their host group permissions and access settings.
+          accessType: read_only
+          parameters: []
+        - name: usergroup_create
+          description: Create a new user group. Requires 'name'.
+          accessType: read_write
+          parameters: []
+        - name: usergroup_update
+          description: Update an existing user group. The 'usrgrpid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: usergroup_delete
+          description: Delete one or more user groups by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- User Directories ---
+        - name: userdirectory_get
+          description: Retrieve configured LDAP or SAML user directories.
+          accessType: read_only
+          parameters: []
+        - name: userdirectory_create
+          description: Create a new user directory (LDAP or SAML).
+          accessType: read_write
+          parameters: []
+        - name: userdirectory_update
+          description: Update an existing user directory. The 'userdirectoryid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: userdirectory_delete
+          description: Delete one or more user directories by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: userdirectory_test
+          description: Test an LDAP or SAML directory connection without saving it.
+          accessType: read_only
+          parameters: []
+        # --- Roles ---
+        - name: role_get
+          description: Retrieve user roles with granular RBAC rules for UI, API, and action permissions.
+          accessType: read_only
+          parameters: []
+        - name: role_create
+          description: Create a new user role. Requires 'name' and 'type'.
+          accessType: read_write
+          parameters: []
+        - name: role_update
+          description: Update an existing user role. The 'roleid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: role_delete
+          description: Delete one or more user roles by their IDs (built-in roles cannot be deleted).
+          accessType: read_write
+          parameters: []
+        # --- API Tokens ---
+        - name: token_get
+          description: Retrieve API tokens for persistent authentication without session login.
+          accessType: read_only
+          parameters: []
+        - name: token_create
+          description: Create a new API token. Requires 'name' and 'userid'.
+          accessType: read_write
+          parameters: []
+        - name: token_update
+          description: Update an existing API token. The 'tokenid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: token_delete
+          description: Delete one or more API tokens immediately invalidating them.
+          accessType: read_write
+          parameters: []
+        - name: token_generate
+          description: Generate the authentication string for a token (returned only once — store securely).
+          accessType: read_write
+          parameters: []
+        # --- Authentication & Autoregistration ---
+        - name: authentication_get
+          description: Get global authentication settings (LDAP, SAML, MFA, password policy, etc.).
+          accessType: read_only
+          parameters: []
+        - name: authentication_update
+          description: Update global authentication settings.
+          accessType: read_write
+          parameters: []
+        - name: autoregistration_get
+          description: Get autoregistration settings (PSK identity, TLS accept mode).
+          accessType: read_only
+          parameters: []
+        - name: autoregistration_update
+          description: Update autoregistration settings including TLS PSK configuration.
+          accessType: read_write
+          parameters: []
+        # --- MFA ---
+        - name: mfa_get
+          description: Retrieve MFA methods (TOTP or Duo Universal Prompt) configured in Zabbix.
+          accessType: read_only
+          parameters: []
+        - name: mfa_create
+          description: Create a new MFA method. Requires 'name' and 'type' (1=TOTP, 2=Duo).
+          accessType: read_write
+          parameters: []
+        - name: mfa_update
+          description: Update an existing MFA method. The 'mfaid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: mfa_delete
+          description: Delete one or more MFA methods by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Icon Maps & Images ---
+        - name: iconmap_get
+          description: Retrieve icon maps that assign icons to network map elements by inventory field.
+          accessType: read_only
+          parameters: []
+        - name: iconmap_create
+          description: Create a new icon map. Requires 'name', 'default_iconid', and 'mappings'.
+          accessType: read_write
+          parameters: []
+        - name: iconmap_update
+          description: Update an existing icon map. The 'iconmapid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: iconmap_delete
+          description: Delete one or more icon maps by their IDs.
+          accessType: read_write
+          parameters: []
+        - name: image_get
+          description: Retrieve images stored in Zabbix (icons and map backgrounds).
+          accessType: read_only
+          parameters: []
+        - name: image_create
+          description: Upload a new image. Requires 'name', 'imagetype', and base64-encoded 'image'.
+          accessType: read_write
+          parameters: []
+        - name: image_update
+          description: Update an existing image. The 'imageid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: image_delete
+          description: Delete one or more images by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Settings & Housekeeping ---
+        - name: settings_get
+          description: Get global Zabbix server settings (theme, severity names, session params, etc.).
+          accessType: read_only
+          parameters: []
+        - name: settings_update
+          description: Update global Zabbix server settings.
+          accessType: read_write
+          parameters: []
+        - name: housekeeping_get
+          description: Get housekeeping settings controlling data retention periods.
+          accessType: read_only
+          parameters: []
+        - name: housekeeping_update
+          description: Update housekeeping settings. Key fields — hk_history, hk_trends, hk_events_mode.
+          accessType: read_write
+          parameters: []
+        # --- Regular Expressions ---
+        - name: regexp_get
+          description: Retrieve global regular expressions reusable in LLD rules and triggers.
+          accessType: read_only
+          parameters: []
+        - name: regexp_create
+          description: Create a new global regular expression. Requires 'name' and 'expressions'.
+          accessType: read_write
+          parameters: []
+        - name: regexp_update
+          description: Update an existing global regular expression. The 'regexpid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: regexp_delete
+          description: Delete one or more global regular expressions by their IDs.
+          accessType: read_write
+          parameters: []
+        # --- Frontend Modules ---
+        - name: module_get
+          description: Retrieve registered frontend modules extending the Zabbix web interface.
+          accessType: read_only
+          parameters: []
+        - name: module_create
+          description: Register a new frontend module. Requires 'id' and 'relative_path'.
+          accessType: read_write
+          parameters: []
+        - name: module_update
+          description: Update an existing frontend module. The 'moduleid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: module_delete
+          description: Unregister frontend modules by their IDs (files are not deleted from disk).
+          accessType: read_write
+          parameters: []
+        # --- Event Connectors ---
+        - name: connector_get
+          description: Retrieve event connectors that stream Zabbix events to external systems.
+          accessType: read_only
+          parameters: []
+        - name: connector_create
+          description: Create a new event connector. Requires 'name', 'url', and 'data_type'.
+          accessType: read_write
+          parameters: []
+        - name: connector_update
+          description: Update an existing event connector. The 'connectorid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: connector_delete
+          description: Delete one or more event connectors stopping event streaming immediately.
+          accessType: read_write
+          parameters: []
+        # --- Audit Log ---
+        - name: auditlog_get
+          description: Retrieve audit log entries recording all configuration changes and login events.
+          accessType: read_only
+          parameters:
+            - name: time_from
+              type: string
+              description: Start time as Unix timestamp
+              required: false
+            - name: time_till
+              type: string
+              description: End time as Unix timestamp
+              required: false
+            - name: userids
+              type: string
+              description: Comma-separated user IDs to filter activity by
+              required: false
+        # --- Proxies ---
+        - name: proxy_get
+          description: Retrieve Zabbix proxies enabling distributed monitoring across network segments.
+          accessType: read_only
+          parameters: []
+        - name: proxy_create
+          description: Create a new proxy. Requires 'name' and 'operating_mode' (ACTIVE or PASSIVE).
+          accessType: read_write
+          parameters: []
+        - name: proxy_update
+          description: Update an existing proxy. The 'proxyid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: proxy_delete
+          description: Delete one or more proxies. Affected hosts will be monitored directly by the server.
+          accessType: read_write
+          parameters: []
+        - name: proxygroup_get
+          description: Retrieve proxy groups providing HA and load balancing for data collection.
+          accessType: read_only
+          parameters: []
+        - name: proxygroup_create
+          description: Create a new proxy group. Requires 'name', 'failover_delay', and 'min_online'.
+          accessType: read_write
+          parameters: []
+        - name: proxygroup_update
+          description: Update an existing proxy group. The 'proxy_groupid' field is required.
+          accessType: read_write
+          parameters: []
+        - name: proxygroup_delete
+          description: Delete one or more proxy groups. Proxies are disassociated but not deleted.
+          accessType: read_write
+          parameters: []
+        # --- Advanced / Analytics ---
+        - name: graph_render
+          description: Render a Zabbix graph as a base64-encoded PNG data URI for multimodal display.
+          accessType: read_only
+          parameters:
+            - name: graphid
+              type: string
+              description: ID of the graph to render
+              required: true
+        - name: anomaly_detect
+          description: Detect anomalous hosts in a group using z-score analysis on trend data.
+          accessType: read_only
+          parameters:
+            - name: groupid
+              type: string
+              description: Host group ID to analyse
+              required: true
+            - name: itemkey
+              type: string
+              description: Item key whose values to compare across hosts
+              required: true
+        - name: capacity_forecast
+          description: Forecast when a metric will reach a threshold using linear regression on trend data.
+          accessType: read_only
+          parameters:
+            - name: itemid
+              type: string
+              description: Item ID to forecast
+              required: true
+            - name: threshold
+              type: number
+              description: Value threshold to forecast the breach date for
+              required: true
+        - name: report_generate
+          description: Generate a PDF report (availability, capacity, or backup) as a base64 data URI.
+          accessType: read_only
+          parameters:
+            - name: report_type
+              type: string
+              description: Report type — availability, capacity_host, capacity_network, or backup
+              required: true
+        - name: action_prepare
+          description: Prepare a write action for review, returning a preview and confirmation token (expires in 5 minutes).
+          accessType: read_only
+          parameters: []
+        - name: action_confirm
+          description: Execute a previously prepared action using its confirmation token.
+          accessType: read_write
+          parameters:
+            - name: token
+              type: string
+              description: Confirmation token returned by action_prepare
+              required: true
+        - name: health_check
+          description: Check MCP server health and connectivity to configured Zabbix servers.
+          accessType: read_only
+          parameters: []
+        - name: zabbix_raw_api_call
+          description: Execute any Zabbix API method directly for advanced or undocumented calls.
+          accessType: read_write
+          parameters:
+            - name: method
+              type: string
+              description: Zabbix API method (e.g. host.get, trigger.update)
+              required: true
+            - name: params
+              type: object
+              description: Parameters to pass to the Zabbix API method
+              required: false
+      runtimeMetadata:
+        defaultArgs:
+            - python
+            - src/server.py
+            - --host
+            - 0.0.0.0
+            - --transport
+            - http
+            - --port
+            - "9001"
+        defaultPort: 9001
+        optionalEnvironmentVariables:
+            - default: "true"
+              description: Enforce read-only mode (disables all write operations)
+              name: MCP_READ_ONLY
+              type: config
+        prerequisites:
+            environmentVariables:
+                - description: Zabbix server URL (from secret zabbix-credentials)
+                  name: ZABBIX_URL
+                  required: true
+                  type: string
+                - description: Zabbix API username (from secret zabbix-credentials)
+                  name: ZABBIX_USER
+                  required: false
+                  type: string
+                - description: Zabbix API password (from secret zabbix-credentials)
+                  name: ZABBIX_PASSWORD
+                  required: false
+                  type: string
+                - description: Zabbix API token (alternative to username/password, from secret zabbix-credentials)
+                  name: ZABBIX_API_TOKEN
+                  required: false
+                  type: string
+                - description: Enforce read-only mode (default true)
+                  name: MCP_READ_ONLY
+                  required: false
+                  type: string
+                - description: Comma-separated list of allowed Host header values
+                  name: ALLOWED_HOSTS
+                  required: true
+                  type: string
+            secrets:
+                - description: kubectl create secret generic zabbix-credentials --from-literal=zabbix-url=<ZABBIX_URL> --from-literal=zabbix-user=<ZABBIX_USER> --from-literal=zabbix-password=<ZABBIX_PASSWORD>
+                  keys:
+                    - description: Zabbix server URL
+                      envVarName: ZABBIX_URL
+                      key: zabbix-url
+                      required: true
+                    - description: Zabbix API username
+                      envVarName: ZABBIX_USER
+                      key: zabbix-user
+                      required: false
+                    - description: Zabbix API password
+                      envVarName: ZABBIX_PASSWORD
+                      key: zabbix-password
+                      required: false
+                    - description: Zabbix API token
+                      envVarName: ZABBIX_API_TOKEN
+                      key: zabbix-api-token
+                      required: false
+                  mountAsFile: false
+                  name: zabbix-credentials
+        recommendedResources:
+            minimal:
+                cpu: 250m
+                memory: 512Mi
+            recommended:
+                cpu: 500m
+                memory: 1Gi
+        requiredEnvironmentVariables:
+            - description: Zabbix server URL
+              name: ZABBIX_URL
+              required: true
+              type: config
+            - description: Zabbix API username (required if ZABBIX_API_TOKEN is not set)
+              name: ZABBIX_USER
+              required: false
+              type: secret
+            - description: Zabbix API password (required if ZABBIX_API_TOKEN is not set)
+              name: ZABBIX_PASSWORD
+              required: false
+              type: secret
+            - description: Zabbix API token (alternative to username/password)
+              name: ZABBIX_API_TOKEN
+              required: false
+              type: secret
+            - description: Comma-separated list of allowed Host header values
+              name: ALLOWED_HOSTS
+              required: true
+              type: config
+      securityIndicators:
+        readOnlyTools: false
+        secureEndpoint: true
+        verifiedSource: false
+      customProperties:
+        architecture:
+            metadataType: MetadataStringValue
+            string_value: "[\"amd64\"]"
+      lastUpdateTimeSinceEpoch: "1774297749000"

@@ -1,0 +1,38 @@
+apiVersion: mlflow.opendatahub.io/v1
+kind: MLflow
+metadata:
+  name: mlflow
+  namespace: redhat-ods-applications
+spec:
+  replicas: 1
+  #storage:
+  #  accessModes:
+  #    - ReadWriteOnce
+  #  resources:
+  #    requests:
+  #      storage: 10Gi
+  serveArtifacts: true
+  backendStoreUriFrom:
+    name: mlflow-connections
+    key: backend-store-db
+  registryStoreUriFrom:
+    name: mlflow-connections
+    key: backend-store-db
+  artifactsDestination: "s3://eclipse.home.glroland.com:9000/mlflow/artifacts"
+  env:
+    - name: MLFLOW_LOGGING_LEVEL
+      value: info
+    - name: AWS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: mlflow-connections
+          key: access-key-id
+    - name: AWS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: mlflow-connections
+          key: secret-access-key
+  # networkPolicyAdditionalEgressRules:
+  #   - ports:
+  #       - protocol: TCP
+  #         port: 443
