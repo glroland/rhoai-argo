@@ -19,3 +19,9 @@ data:
                 requests:
                   cpu: 100m
                   memory: 256Mi
+  service: |
+    metadata:
+      annotations:
+        service.beta.openshift.io/serving-cert-secret-name: "letsencrypt-router-certs"
+    spec:
+      type: ClusterIP
