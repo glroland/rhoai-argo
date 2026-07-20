@@ -7,14 +7,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "45"
 spec:
   vgpuDeviceManager:
-    config:
-      default: default
-    enabled: true
+    enabled: false
   migManager:
-    config:
-      default: all-disabled
-      name: default-mig-parted-config
-    enabled: true
+    enabled: false
   operator:
     defaultRuntime: crio
     initContainer: {}
@@ -26,28 +21,19 @@ spec:
     enabled: true
   dcgmExporter:
     config:
-      name: ''
+      name: dcgm-metrics-csv
     enabled: true
     serviceMonitor:
       enabled: true
-  cdi:
-    default: false
-    enabled: false
+    env:
+    - name: DCGM_EXPORTER_COLLECTORS
+      value: /etc/dcgm-exporter/dcgm-metrics.csv
   driver:
-{{- if .Values.enableRdma }}
-    rdma:
-      enabled: true
-      useHostMofed: false
-{{- end }}
     licensingConfig:
       configMapName: ''
       nlsEnabled: true
     enabled: true
-    kernelModuleType: proprietary
-    repository: nvcr.io/nvidia
-    image: driver
-    version: {{ .Values.nvidiaGpuDriverVersion }}
-    useOpenKernelModules : false
+    kernelModuleType: auto
     certConfig:
       name: ''
     useNvidiaDriverCRD: false
@@ -81,18 +67,13 @@ spec:
       root: /run/nvidia/mps
   gdrcopy:
     enabled: false
-  kataManager:
-    config:
-      artifactsDir: /opt/nvidia-gpu-operator/artifacts/runtimeclasses
   mig:
-    strategy: single
+    strategy: none
   sandboxDevicePlugin:
     enabled: true
   validator:
     plugin:
-      env:
-        - name: WITH_WORKLOAD
-          value: 'false'
+      env: []
   nodeStatusExporter:
     enabled: true
   daemonsets:
